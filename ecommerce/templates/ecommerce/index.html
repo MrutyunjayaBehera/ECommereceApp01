@@ -2,35 +2,33 @@
 
 {% block content %}
 
-
 <div class="container">
 
   <div class="row">
     <div class="col-md-12">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3" style="border-radius: 10px;">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link btn" href="#">Cart
-                  <span class="badge badge-light" id="cart"></span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
-          </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <button type="button" data-html="true" id="cart" class="btn btn-secondary" data-container="body" 
+                data-toggle="popover" data-placement="bottom" data-content="Bottom popover">Cart(0)
+              </button>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
         </div>
       </nav>
     </div>
@@ -116,8 +114,13 @@
     // access to length of the cart
     leng = Object.keys(cart).length;
     // display this length in the navbar
-    document.getElementById('cart').innerHTML = Object.keys(cart).length;
-})
+    document.getElementById('cart').innerHTML = "Cart(" +Object.keys(cart).length+")";
+    // enablling popover buttons
+  })
+  $(function () {
+    $('[data-toggle="popover"]').popover();
+    document.getElementById('cart').setAttribute('data-content', '<h5>This is the text</h5>');
+  });
 </script>
 
 {% endblock %}
