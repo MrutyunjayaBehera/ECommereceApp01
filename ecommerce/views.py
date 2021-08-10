@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 def index(request):
   products = Products.objects.all()
 
-  # adding search functionality by geeting the user input value through 'name' attriute
+  # adding search functionality by geeting the user input value through 'name' attribute
   item_name = request.GET.get('item_name')
   if (item_name != " " and item_name is not None):
     products = Products.objects.filter(title__icontains=item_name)

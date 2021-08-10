@@ -8,8 +8,8 @@
     <div class="col-md-12">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-          aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -21,7 +21,7 @@
               <a class="nav-link" href="#">Features</a>
             </li>
             <li class="nav-item">
-              <button type="button" data-html="true" id="cart" class="btn btn-secondary" data-container="body" 
+              <button type="button" data-html="true" id="cart" class="btn btn-secondary" data-container="body"
                 data-toggle="popover" data-placement="bottom" data-content="Bottom popover">Cart(0)
               </button>
             </li>
@@ -56,11 +56,11 @@
       <div class="card">
         <img src="{{product.image}}" class="card-img-top bg-primary" alt="...">
         <div class="card-body">
-          <h5 class="card-title"> {{product.title}} </h5>
+          <h5 id="{{product.id}}" class="card-title"> {{product.title}} </h5>
           <h6 class="card-subtitle mb-2 text-muted"> ₹{{product.price}} </h6>
           <p class="card-text">{{product.description}} </p>
           <a href="/{{product.id}}" class="btn btn-warning">View</a>
-          <button id="{{product.id}}" class="btn atc btn-warning">Add to Cart</button>
+          <a id="{{product.id}}" class="btn atc btn-warning">Add to Cart</a>
         </div>
       </div>
     </div>
@@ -72,7 +72,8 @@
       <div class="pagination">
         {% if products.has_previous %}
         <li class="page-item">
-          <a class="page-link" href="?page={{products.previous_page_number}}"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+          <a class="page-link" href="?page={{products.previous_page_number}}"><i class="fa fa-arrow-circle-left"
+              aria-hidden="true"></i></a>
         </li>
         {% endif %}
         <li class="page-item active">
@@ -80,7 +81,8 @@
         </li>
         {% if products.has_next %}
         <li class="page-item">
-          <a class="page-link" href="?page={{products.next_page_number}}"><i class="fa fa-arrow-circle-right" aria-hidden="true"></a>
+          <a class="page-link" href="?page={{products.next_page_number}}"><i class="fa fa-arrow-circle-right"
+              aria-hidden="true"></i></a>
         </li>
         {% endif %}
       </div>
@@ -89,23 +91,22 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
-  crossorigin="anonymous"></script>
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
 <script>
-  if (localStorage.getItem('cart') == null){
+  if (localStorage.getItem('cart') == null) {
     var cart = {};
   }
-  else{
+  else {
     cart = JSON.parse(localStorage.getItem('cart'));
   }
-  $(document).on('click', '.atc', function(){
+  $(document).on('click', '.atc', function () {
     var item_id = this.id.toString();
     // in cart we will store frequency of diff. objects added in it
-    if (cart[item_id] != null){
+    if (cart[item_id] != null) {
       cart[item_id] += 1;
     }
-    else{
+    else {
       cart[item_id] = 1;
     }
     console.log(cart);
@@ -114,12 +115,12 @@
     // access to length of the cart
     leng = Object.keys(cart).length;
     // display this length in the navbar
-    document.getElementById('cart').innerHTML = "Cart(" +Object.keys(cart).length+")";
+    document.getElementById('cart').innerHTML = "Cart(" + Object.keys(cart).length + ")";
     // enablling popover buttons
   })
   $(function () {
     $('[data-toggle="popover"]').popover();
-    document.getElementById('cart').setAttribute('data-content', '<h5>This is the text</h5>');
+    document.getElementById('cart').setAttribute('data-content', '<h5>This is your cart</h5>');
   });
 </script>
 
