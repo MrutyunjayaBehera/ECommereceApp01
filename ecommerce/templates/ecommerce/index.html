@@ -118,10 +118,26 @@
     document.getElementById('cart').innerHTML = "Cart(" + Object.keys(cart).length + ")";
     // enablling popover buttons
   })
+
   $(function () {
     $('[data-toggle="popover"]').popover();
-    document.getElementById('cart').setAttribute('data-content', '<h5>This is your cart</h5>');
+    // document.getElementById('cart').setAttribute('data-content', '<h5>This is your cart</h5>');
+    DisplayCart(cart);
   });
+
+  function DisplayCart(cart){
+    var cartString = "";
+    cartString += "";
+    var cartIndex = 1;
+
+    for (var x in cart){
+      cartString += " " + cartIndex +"."+ document.getElementById(x).innerHTML + "Qty:" + cart[x] + "</br>";
+      cartIndex += 1;
+    }
+    // now add cartString to popover button
+    document.getElementById('cart').setAttribute('data-content', cartString);
+  }
+
 </script>
 
 {% endblock %}
